@@ -51,7 +51,7 @@ describe('Tours', () => {
                 .send({
                     title: 'Worst Circus Ever',
                     activities: ['smelly petting zoo', 'broken rides'],
-                    launchDate: new Date('2014-04-16T07:00:00.000Z'),
+                    launchDate: '2014-04-16T07:00:00.000Z',
                     stops: []
                 })
                 .then(res => {
@@ -60,7 +60,7 @@ describe('Tours', () => {
                         __v: expect.any(Number),
                         title: 'Worst Circus Ever',
                         activities: ['smelly petting zoo', 'broken rides'],
-                        launchDate: new Date('2014-04-16T07:00:00.000Z').toISOString(),
+                        launchDate:'2014-04-16T07:00:00.000Z',
                         stops: []
                     });
                 });
@@ -86,7 +86,7 @@ describe('Tours', () => {
     });
 
     describe('stops', () => {
-        it.skip('posts a stop to a tour', () => {
+        it('posts a stop to a tour', () => {
             return request(app)
                 .post(`/api/tours/${createdTours[0]._id}/stops`)
                 .send({ zip: '97209' })
@@ -94,8 +94,7 @@ describe('Tours', () => {
                     expect(res.body).toEqual({ ...createdTours[0], stops: [{
                         _id: expect.any(String),
                         location: expect.any(Object),
-                        weather: expect.any(Object),
-                        attendance: expect.any(Object)
+                        weather: expect.any(Object)
                     }] });
                 });
         });
